@@ -3,17 +3,16 @@
 </template>
 <script>
 
-	// export default {
-	// 	name: contactEliminar,
-	// 	props:{
-	// 		ContactEliminar: null
-	// 	},
-	// 	methods: {
-	// 		async eliminar(id) {
-	// 			const res = await axios.delete('/contacts/' +id);
-	// 			this.list();
-	// 		},
-    //     }
+	export default {
+		props:{
+	 		ContactEliminar: null
+	 	},
+	 	methods: {
+	 		async eliminar(id) {
+	 			const res = await axios.delete('/contacts/' +id);
+	 			this.list();
+	 		},
+         }
 
-	// }
+	}
 </script>

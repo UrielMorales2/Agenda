@@ -9,7 +9,7 @@
 			</button>
 
 			<!-- Modal -->
-			<div class="modal" :class="{show:modal}">
+			 <!-- <div class="modal" :class="{show:modal}">
 			  <div class="modal-dialog">
 			    <div class="modal-content">
 			      <div class="modal-header">
@@ -18,7 +18,7 @@
 			          <span aria-hidden="true">&times;</span>
 			        </button>
 			      </div>
-			      <div class="modal-body">
+			   	<div class="modal-body">
 			       	<div>
 			       		<label for="first_name">Nombre</label>
 			       		<input v-model="contact.first_name" type="text" class="form-control" id="first_name" placeholder="Nombre del Contacto" name="">
@@ -43,14 +43,14 @@
 			       		<label for="address">comida Favorita</label>
 			       		<input v-model="contact.food" type="text" class="form-control" id="food" placeholder="Comida" name="">
 			       	</div>
-			      </div>
+			      </div> 
 			      <div class="modal-footer">
 			        <button @click="closeModal();" type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
 			        <button @click="save();" type="button" class="btn btn-success">Guardar Cambios</button>
-			      </div>
+				  </div>
 			    </div>
 			  </div>
-			</div>
+			</div> -->
 		<table class="table table-striped table-hover">
 		  <thead class="thead-dark">
 		    <tr>
@@ -76,12 +76,9 @@
 		      <td>
 		      	<button @click="update=true; openModal(contact);" class="btn btn-warning">Editar</button>
 		      </td>
-			  <td>
-				 <!-- <contactEliminar> <contact-eliminar> /> -->
+			  <td><!-- boton de eliminar -->
+				<contactEliminar :ContactEliminar="id"></contactEliminar>
 			  </td>
-		      <!-- <td>
-		      	<button @click="eliminar(contact.id)" class="btn btn-danger">Eliminar</button>
-		      </td> -->
 		    </tr>
 		  </tbody>
 		</table>
@@ -89,14 +86,12 @@
 </template>
 
 <script>
-// import contactEliminar from "./components/contactEliminar.vue";
+import contactEliminar from "./contactEliminar.vue";
 
 	export default {
-		// components:{
-		// 	contactEliminar
-		// },
-		data () {
+		data () { 
 			return {
+				ContactEliminar: null,
 				contact: {
 					first_name:'',
 					last_name:'',
@@ -113,7 +108,13 @@
 				contacts:[],
 			}
 		},
+		components:{
+			contactEliminar
+		},
 		methods: {
+			eliminar(){
+				this.ContactEliminar =this.id;
+			},
 			async list() {
 				const res = await axios.get('contacts');
 
